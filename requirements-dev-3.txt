@@ -1,5 +1,5 @@
 wheel
-nose
 exdoc
 j2cli
+jinja2
 aiosmtpd
