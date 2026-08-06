@@ -6,8 +6,6 @@ from mailem import Attachment, ImageAttachment
 from mailem.template import Template, TemplateRegistry
 from mailem.template.renderer import Jinja2TemplateRenderer
 
-from future.utils import PY2
-
 
 class TemplateTest(unittest.TestCase):
     def _check_signup_template(self, signup):
@@ -32,17 +30,11 @@ class TemplateTest(unittest.TestCase):
         self.assertIn('To: kolypto@gmail.com', msg_str)
         self.assertIn('You are signed up -- <img src="cid:flower.jpg" /> localhost', msg_str)
 
-        if PY2:
-            self.assertIn('Content-Disposition: inline; filename="=?utf-8?q?flower=2Ejpg?="', msg_str)
-        else:
-            self.assertIn('Content-Disposition: inline; filename="flower.jpg"', msg_str)
+        self.assertIn('Content-Disposition: inline; filename="flower.jpg"', msg_str)
         #self.assertIn('Content-Type: image/jpeg', msg_str)
         self.assertIn('Content-ID: <flower.jpg>', msg_str)
 
-        if PY2:
-            self.assertIn('Content-Disposition: attachment; filename="=?utf-8?q?kolypto=2Egpg?="', msg_str)
-        else:
-            self.assertIn('Content-Disposition: attachment; filename="kolypto.gpg"', msg_str)
+        self.assertIn('Content-Disposition: attachment; filename="kolypto.gpg"', msg_str)
         self.assertIn('Content-Type: application/octet-stream', msg_str)
 
     def test_template(self):

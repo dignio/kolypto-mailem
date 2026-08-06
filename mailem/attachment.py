@@ -3,7 +3,7 @@
 from email.encoders import encode_base64
 from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
-from future.moves.urllib.parse import quote_plus
+from urllib.parse import quote_plus
 
 from .util import unicode_header
 

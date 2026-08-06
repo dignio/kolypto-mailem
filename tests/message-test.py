@@ -4,8 +4,6 @@ import unittest
 
 from mailem import Message, Attachment, ImageAttachment
 
-from future.utils import PY2
-
 
 class MessageTest(unittest.TestCase):
     def test_html(self):
@@ -34,14 +32,9 @@ class MessageTest(unittest.TestCase):
 
         self.assertIn('Subject: =?utf-8?q?Mail=27em_test_=C2=B0C?=', msg_str)
         self.assertIn('To: kolypto@gmail.com', msg_str)
-        if PY2:
-            self.assertIn('From: =?utf-8?q?A?= <a@b>', msg_str)
-            self.assertIn('Cc: =?utf-8?q?A?= <a@b>, b@b', msg_str)
-            self.assertIn('Bcc: =?utf-8?q?A?= <a@b>, b@b', msg_str)
-        else:
-            self.assertIn('From: A <a@b>', msg_str)
-            self.assertIn('Cc: A <a@b>, b@b', msg_str)
-            self.assertIn('Bcc: A <a@b>, b@b', msg_str)
+        self.assertIn('From: A <a@b>', msg_str)
+        self.assertIn('Cc: A <a@b>, b@b', msg_str)
+        self.assertIn('Bcc: A <a@b>, b@b', msg_str)
         self.assertIn('Reply-To: z@b', msg_str)
         self.assertIn('Message-ID:', msg_str)
         self.assertIn('Custom: Test', msg_str)
@@ -85,7 +78,4 @@ class MessageTest(unittest.TestCase):
 
         self.assertIn('Content-Type: image/jpeg', msg_str)
         self.assertIn('Content-ID: <cute.jpg>', msg_str)
-        if PY2:
-            self.assertIn('Content-Disposition: inline; filename="=?utf-8?q?cute=2Ejpg?="', msg_str)
-        else:
-            self.assertIn('Content-Disposition: inline; filename="cute.jpg"', msg_str)
+        self.assertIn('Content-Disposition: inline; filename="cute.jpg"', msg_str)

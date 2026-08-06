@@ -20,6 +20,6 @@ publish: README.md
 
 .PHONY: test test-tox
 test:
-	@nosetests
+	@python -m unittest discover -s tests
 test-tox:
 	@tox
