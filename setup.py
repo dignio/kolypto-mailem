@@ -21,7 +21,7 @@ setup(
     scripts=[],
     entry_points={},
 
-    python_requires='>=3.14,<3.15',
+    python_requires='>= 3.12',
     install_requires=[],
     extras_require={
     },
@@ -36,6 +36,8 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: 3.14',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
